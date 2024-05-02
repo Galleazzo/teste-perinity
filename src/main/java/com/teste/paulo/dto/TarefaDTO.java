@@ -1,5 +1,6 @@
 package com.teste.paulo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.teste.paulo.model.Pessoa;
 import jakarta.persistence.ManyToOne;
 
@@ -10,11 +11,12 @@ public class TarefaDTO {
     private Long id;
     private String titulo;
     private String descricao;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date prazo;
     private String departamento;
     private Integer duracao;
 
-    private PessoaDTO pessoaAlocada;
+    private Long pessoaAlocada;
     private Boolean finalizado;
 
     public TarefaDTO(){}
@@ -67,11 +69,11 @@ public class TarefaDTO {
         this.duracao = duracao;
     }
 
-    public PessoaDTO getPessoaAlocada() {
+    public Long getPessoaAlocada() {
         return pessoaAlocada;
     }
 
-    public void setPessoaAlocada(PessoaDTO pessoaAlocada) {
+    public void setPessoaAlocada(Long pessoaAlocada) {
         this.pessoaAlocada = pessoaAlocada;
     }
 

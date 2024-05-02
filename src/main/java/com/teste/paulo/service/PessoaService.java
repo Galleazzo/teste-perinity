@@ -2,9 +2,12 @@ package com.teste.paulo.service;
 
 import com.teste.paulo.dto.PessoaDTO;
 import com.teste.paulo.model.Pessoa;
+import com.teste.paulo.projection.ProjectedListPessoasEHoras;
 import com.teste.paulo.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PessoaService {
@@ -15,12 +18,11 @@ public class PessoaService {
     public void save(PessoaDTO pessoaDTO) {
         Pessoa pessoa = new Pessoa();
         if(pessoaDTO.getId() != null) {
-            pessoa = this.pessoaRepository.getById(pessoa.getId());
+            pessoa = this.pessoaRepository.getById(pessoaDTO.getId());
         }
 
         pessoa.setNome(pessoaDTO.getNome());
         pessoa.setDepartamento(pessoaDTO.getDepartamento());
-        //pessoa.setTarefaList(pessoaDTO.getTarefaList());
 
         this.pessoaRepository.save(pessoa);
     }
@@ -33,8 +35,19 @@ public class PessoaService {
 
         pessoa.setNome(pessoaDTO.getNome());
         pessoa.setDepartamento(pessoaDTO.getDepartamento());
-        //pessoa.setTarefaList(pessoaDTO.getTarefaList());
 
         this.pessoaRepository.save(pessoa);
+    }
+
+    public void deleteById(Long id) {
+        try {
+            this.pessoaRepository.deleteById(id);
+        } catch (Exception e) {
+            System.out.println("Id invalido");
+        }
+    }
+
+    public List<ProjectedListPessoasEHoras> getPessoasHoras() {
+        return this.pessoaRepository.getPessoasEHoras();
     }
 }

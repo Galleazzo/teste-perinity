@@ -1,5 +1,6 @@
 package com.teste.paulo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ public class Tarefa {
     private Long id;
     private String titulo;
     private String descricao;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date prazo;
     private String departamento;
     private Integer duracao;
