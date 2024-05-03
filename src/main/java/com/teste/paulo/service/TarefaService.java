@@ -8,6 +8,8 @@ import com.teste.paulo.repository.TarefaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TarefaService {
 
@@ -41,5 +43,9 @@ public class TarefaService {
         Tarefa tarefa = this.tarefaRepository.getById(id);
         tarefa.setFinalizado(true);
         this.tarefaRepository.save(tarefa);
+    }
+
+    public List<Tarefa> getPendentes() {
+        return this.tarefaRepository.getPendentes();
     }
 }

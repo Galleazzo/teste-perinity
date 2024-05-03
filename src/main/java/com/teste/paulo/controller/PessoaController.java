@@ -7,6 +7,7 @@ import com.teste.paulo.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -34,5 +35,10 @@ public class PessoaController {
     @GetMapping
     public List<ProjectedListPessoasEHoras> getListPessoasHoras() {
         return this.pessoaService.getPessoasHoras();
+    }
+
+    @GetMapping(path = "/gastos")
+    public List<Double> getMediaPorTarefa(@RequestParam String nome, @RequestParam Date dataInicial, @RequestParam Date dataFinal) {
+        return this.pessoaService.getMediaPorTarefa(nome, dataInicial, dataFinal);
     }
 }

@@ -7,6 +7,7 @@ import com.teste.paulo.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -49,5 +50,10 @@ public class PessoaService {
 
     public List<ProjectedListPessoasEHoras> getPessoasHoras() {
         return this.pessoaRepository.getPessoasEHoras();
+    }
+
+    public List<Double> getMediaPorTarefa(String nome, Date dataInicial, Date dataFinal) {
+        List<Double> listaTempos = this.pessoaRepository.getMediaPorTarefa(nome, dataInicial, dataFinal);
+        return  listaTempos;
     }
 }
